@@ -1,10 +1,10 @@
 ci:
-  - .github/*
+  - .github/**/*
 api:
-  - zeus/api/*
+  - zeus/api/**/*
 batch:
-  - zeus/batch/*
+  - zeus/batch/**/*
 domain:
-  - zeus/domain/*
+  - zeus/domain/**/*
 infrastructure:
-  - zeus/infrastructure/*
+  - zeus/infrastructure/**/*
