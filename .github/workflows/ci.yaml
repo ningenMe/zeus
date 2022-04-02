@@ -18,10 +18,47 @@ jobs:
       - id: constant
         name: constant
         uses: ./.github/composite/constant
+  git-diff:
+    runs-on: ubuntu-latest
+    outputs:
+      ci: ${{ steps.git-diff-ci.outputs.diff-count }}
+      api: ${{ steps.git-diff-api.outputs.diff-count }}
+      batch: ${{ steps.git-diff-batch.outputs.diff-count }}
+      domain: ${{ steps.git-diff-domain.outputs.diff-count }}
+      infrastructure: ${{ steps.git-diff-infrastructure.outputs.diff-count }}
+    steps:
+      - id: checkout
+        name: checkout
+        uses: actions/checkout@v3.0.0
+      - id: git-diff-ci
+        name: git diff ci
+        uses: ./.github/workflows/composite/git-diff
+        with:
+          subdir: .github
+      - id: git-diff-api
+        name: git diff api
+        uses: ./.github/workflows/composite/git-diff
+        with:
+          subdir: zeus/api
+      - id: git-diff-batch
+        name: git diff batch
+        uses: ./.github/workflows/composite/git-diff
+        with:
+          subdir: zeus/batch
+      - id: git-diff-domain
+        name: git diff domain
+        uses: ./.github/workflows/composite/git-diff
+        with:
+          subdir: zeus/domain
+      - id: git-diff-infrastructure
+        name: git diff infrastructure
+        uses: ./.github/workflows/composite/git-diff
+        with:
+          subdir: zeus/infrastructure
 
   github:
     runs-on: ubuntu-latest
-    needs: [ constant ]
+    needs: [ constant, git-diff ]
     steps:
       - id: checkout
         name: checkout
@@ -44,19 +81,24 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project-name:
-          - ":zeus:api"
-          - ":zeus:batch"
-          - ":zeus:domain"
-          - ":zeus:infrastructure"
+        include:
+          - project-name: ":zeus:api"
+            has-diff: ${{ needs.git-diff.outputs.api > 0 }}
+          - project-name: ":zeus:batch"
+            has-diff: ${{ needs.git-diff.outputs.batch > 0 }}
+          - project-name: ":zeus:domain"
+            has-diff: ${{ needs.git-diff.outputs.domain > 0 }}
+          - project-name: ":zeus:infrastructure"
+            has-diff: ${{ needs.git-diff.outputs.infrastructure > 0 }}
     name: gradle-check${{ matrix.project-name }}
-    needs: [ constant, github ]
+    needs: [ constant, git-diff, github ]
     steps:
       - id: checkout
         name: checkout
         uses: actions/checkout@v3.0.0
       - id: gradle-check
         name: gradle check
+        if: ${{ matrix.has-diff }}
         uses: ./.github/composite/gradle-check
         with:
           java-version: ${{ needs.constant.outputs.java-version }}
