@@ -1,0 +1,5 @@
+.openapi-generator/*
+pom.xml
+build.gradle.kts
+README.md
+settings.gradle

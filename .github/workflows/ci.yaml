@@ -49,7 +49,7 @@ jobs:
           - ":zeus:batch"
           - ":zeus:domain"
           - ":zeus:infrastructure"
-    name: gradle-check-${{ matrix.project-name }}
+    name: gradle-check${{ matrix.project-name }}
     needs: [ constant, github ]
     steps:
       - id: checkout
