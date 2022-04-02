@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ZeusApplication
+open class ApiApplication
 
 fun main(args: Array<String>) {
-	runApplication<ZeusApplication>(*args)
+	runApplication<ApiApplication>(*args)
 }
