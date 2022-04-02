@@ -42,6 +42,13 @@ jobs:
 
   gradle-check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project-name:
+          - ":zeus:api"
+          - ":zeus:batch"
+          - ":zeus:domain"
+          - ":zeus:infrastructure"
     needs: [ constant, github ]
     steps:
       - id: checkout
@@ -54,3 +61,4 @@ jobs:
           java-version: ${{ needs.constant.outputs.java-version }}
           java-distribution: ${{ needs.constant.outputs.java-distribution }}
           gradle-version: ${{ needs.constant.outputs.gradle-version }}
+          project-name: ${{ matrix.project-name }}
