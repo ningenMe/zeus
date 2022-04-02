@@ -59,10 +59,18 @@ jobs:
   github:
     runs-on: ubuntu-latest
     needs: [ constant, git-diff ]
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - id: checkout
         name: checkout
         uses: actions/checkout@v3.0.0
+      - id: labeler
+        name: labeler
+        uses: actions/labeler@v4.0.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - id: assignees
         name: assignees
         uses: actions/github-script@v4.1.0
