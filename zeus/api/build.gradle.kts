@@ -16,7 +16,7 @@ tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
 openApiGenerate {
     generatorName.set("kotlin-spring")
     inputSpec.set("$rootDir/openapi/openapi.yaml")
-    outputDir.set("$rootDir/openapi-output")
+    outputDir.set("$rootDir/zeus/api")
     apiPackage.set("ningenme.net.zeus.application.generated.controller")
     modelPackage.set("ningenme.net.zeus.application.generated.view")
     modelNameSuffix.set("view")
