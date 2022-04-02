@@ -71,6 +71,7 @@ jobs:
         uses: actions/labeler@v4.0.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: .github/labeler.yaml
       - id: assignees
         name: assignees
         uses: actions/github-script@v4.1.0
