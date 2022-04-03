@@ -6,3 +6,4 @@ spring:
         - test-infrastructure
       prod:
         - prod-api
+        - prod-infrastructure
