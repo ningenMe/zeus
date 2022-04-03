@@ -12,8 +12,8 @@ class HealthGetUsecase(
     fun getView(): HealthGetResponseView {
         return HealthGetResponseView(
             isNingenmeMysqlConnected = healthService.isNingenmeMysqlConnected(),
-            isComicmeMysqlConnected = false,
-            isComproMysqlConnected = false,
+            isComicmeMysqlConnected = healthService.isComicmeMysqlConnected(),
+            isComproMysqlConnected = healthService.isComproMysqlConnected(),
         )
     }
 }
