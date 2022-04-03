@@ -24,7 +24,7 @@
         <table schema="ningenme"
                tableName="%"
         >
-            <domainObjectRenamingRule searchString="$" replaceString="BaseDto"/>
+            <domainObjectRenamingRule searchString="$" replaceString="NingenmeMysqlBaseDto"/>
         </table>
     </context>
 </generatorConfiguration>

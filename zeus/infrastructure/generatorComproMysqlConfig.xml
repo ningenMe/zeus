@@ -24,7 +24,7 @@
         <table schema="compro"
                tableName="%"
         >
-            <domainObjectRenamingRule searchString="$" replaceString="BaseDto"/>
+            <domainObjectRenamingRule searchString="$" replaceString="ComproMysqlBaseDto"/>
         </table>
     </context>
 </generatorConfiguration>

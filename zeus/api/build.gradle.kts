@@ -29,8 +29,7 @@ openApiGenerate {
             "dateLibrary" to "java8",
             "interfaceOnly" to "true",
             "skipDefaultInterface" to "true",
-            "useTags" to "true",
-            "hideGenerationTimestamp" to "true"
+            "useTags" to "true"
         )
     )
 }
