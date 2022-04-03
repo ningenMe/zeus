@@ -32,16 +32,43 @@ allprojects {
         annotationProcessor("org.projectlombok:lombok:1.18.22")
         testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.5")
     }
-}
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "17"
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = "17"
+        }
     }
-}
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-    jvmArgs = mutableListOf("-Dspring.profiles.active=test")
+    tasks.withType<Test> {
+        useJUnitPlatform()
+        jvmArgs = mutableListOf("-Dspring.profiles.active=test")
+        dependsOn("dockerComposeUp")
+        finalizedBy("dockerComposeDown")
+    }
+
+    task<Exec>("dockerComposeUp") {
+        setCommandLine(
+            "docker-compose",
+            "-f",
+            "$rootDir/tool/docker-compose.yaml",
+            "up",
+            "-d"
+        )
+        doLast {
+            Thread.sleep(20 * 1000) //20secまつ
+        }
+    }
+
+    task<Exec>("dockerComposeDown") {
+        setCommandLine(
+            "docker-compose",
+            "-f",
+            "$rootDir/tool/docker-compose.yaml",
+            "down",
+            "--remove-orphans",
+            "--volumes"
+        )
+    }
 }
