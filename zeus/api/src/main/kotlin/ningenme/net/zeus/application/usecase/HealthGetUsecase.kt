@@ -1,16 +1,19 @@
 package ningenme.net.zeus.application.usecase
 
 import ningenme.net.zeus.application.generated.view.HealthGetResponseView
+import ningenme.net.zeus.domain.service.HealthService
 import org.springframework.stereotype.Service
 
 @Service
-class HealthGetUsecase {
+class HealthGetUsecase(
+    private val healthService: HealthService
+) {
 
     fun getView(): HealthGetResponseView {
         return HealthGetResponseView(
-            ningenmeMysql = false,
-            comicmeMysql = false,
-            comproMysql = false
+            isNingenmeMysqlConnected = healthService.isNingenmeMysqlConnected(),
+            isComicmeMysqlConnected = false,
+            isComproMysqlConnected = false,
         )
     }
 }

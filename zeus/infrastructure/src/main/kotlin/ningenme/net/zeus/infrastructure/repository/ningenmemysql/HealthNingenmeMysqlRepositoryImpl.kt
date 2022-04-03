@@ -5,7 +5,7 @@ import ningenme.net.zeus.infrastructure.repository.ningenmemysql.mapper.HealthNi
 import org.springframework.stereotype.Repository
 
 @Repository
-class HealthNingenmeMysqlRepositoryImpl(
+open class HealthNingenmeMysqlRepositoryImpl(
     private val healthNingenmeMysqlMapper: HealthNingenmeMysqlMapper
 ) : HealthNingenmeMysqlRepository {
 

@@ -1,12 +1,8 @@
 spring:
   profiles:
     group:
-      local:
-        - common
-        - local
       test:
-        - common
-        - test
+        - test-api
+        - test-infrastructure
       prod:
-        - common
-        - prod
+        - prod-api
