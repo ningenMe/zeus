@@ -8,24 +8,57 @@ dependencies {
     mybatisGenerator("mysql:mysql-connector-java:8.0.28")
 }
 
-task("generatorNingenmeMysql") {
+val mbgenerator = ant.withGroovyBuilder {
+    "taskdef"(
+        "name" to "mbgenerator",
+        "classname" to "org.mybatis.generator.ant.GeneratorAntTask",
+        "classpath" to mybatisGenerator.asPath
+    )
+}
+
+fun getCustomMbgenerator(xml: String): Any? {
+    return ant.withGroovyBuilder {
+        "mbgenerator"(
+            "overwrite" to true,
+            "configfile" to xml,
+            "verbose" to true
+        )
+    }
+}
+
+val generatorNingenmeMysqlTask = task("generatorNingenmeMysql") {
     group = "mybatis"
     doLast {
-        ant.withGroovyBuilder {
-            "taskdef"(
-                "name" to "mbgenerator",
-                "classname" to "org.mybatis.generator.ant.GeneratorAntTask",
-                "classpath" to mybatisGenerator.asPath
-            )
-        }
-        ant.withGroovyBuilder {
-            "mbgenerator"(
-                "overwrite" to true,
-                "configfile" to "generatorNingenmeMysqlConfig.xml",
-                "verbose" to true
-            )
-        }
+        mbgenerator
+        getCustomMbgenerator("generatorNingenmeMysqlConfig.xml")
     }
-    dependsOn("dockerComposeUp")
-    finalizedBy("dockerComposeDown")
+    dependsOn(tasks.dockerComposeUp)
+    finalizedBy(tasks.dockerComposeDown)
+}
+
+val generatorComicmeMysqlTask = task("generatorComicmeMysql") {
+    group = "mybatis"
+    doLast {
+        mbgenerator
+        getCustomMbgenerator("generatorComicmeMysqlConfig.xml")
+    }
+    dependsOn(tasks.dockerComposeUp)
+    finalizedBy(tasks.dockerComposeDown)
+}
+
+
+val generatorComproMysqlTask = task("generatorComproMysql") {
+    group = "mybatis"
+    doLast {
+        mbgenerator
+        getCustomMbgenerator("generatorComproMysqlConfig.xml")
+    }
+    dependsOn(tasks.dockerComposeUp)
+    finalizedBy(tasks.dockerComposeDown)
+}
+
+task("generatorAllMysql") {
+    group = "mybatis"
+    dependsOn(tasks.dockerComposeUp, generatorNingenmeMysqlTask, generatorComicmeMysqlTask, generatorComproMysqlTask)
+    finalizedBy(tasks.dockerComposeDown)
 }

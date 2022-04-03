@@ -33,7 +33,6 @@ allprojects {
         testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.5")
     }
 
-
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
@@ -41,14 +40,7 @@ allprojects {
         }
     }
 
-    tasks.withType<Test> {
-        useJUnitPlatform()
-        jvmArgs = mutableListOf("-Dspring.profiles.active=test")
-        dependsOn("dockerComposeUp")
-        finalizedBy("dockerComposeDown")
-    }
-
-    task<Exec>("dockerComposeUp") {
+    val dockerComposeUpTask = task<Exec>("dockerComposeUp") {
         setCommandLine(
             "docker-compose",
             "-f",
@@ -57,11 +49,11 @@ allprojects {
             "-d"
         )
         doLast {
-            Thread.sleep(30 * 1000) //30secまつ
+            Thread.sleep(40 * 1000) //40secまつ
         }
     }
 
-    task<Exec>("dockerComposeDown") {
+    val dockerComposeDownTask = task<Exec>("dockerComposeDown") {
         setCommandLine(
             "docker-compose",
             "-f",
@@ -70,5 +62,12 @@ allprojects {
             "--remove-orphans",
             "--volumes"
         )
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+        jvmArgs = mutableListOf("-Dspring.profiles.active=test")
+        dependsOn(dockerComposeUpTask)
+        finalizedBy(dockerComposeDownTask)
     }
 }
