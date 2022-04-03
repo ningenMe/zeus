@@ -57,7 +57,7 @@ allprojects {
             "-d"
         )
         doLast {
-            Thread.sleep(20 * 1000) //20secまつ
+            Thread.sleep(30 * 1000) //30secまつ
         }
     }
 

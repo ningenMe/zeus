@@ -3,8 +3,9 @@ val mybatisGenerator: Configuration by configurations.creating
 dependencies {
     implementation(project(":zeus:domain"))
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
+    implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.4.0")
     mybatisGenerator("org.mybatis.generator:mybatis-generator-core:1.4.1")
-    mybatisGenerator("org.mariadb.jdbc:mariadb-java-client:3.0.4")
+    mybatisGenerator("mysql:mysql-connector-java:8.0.28")
 }
 
 task("generatorNingenmeMysql") {
@@ -25,4 +26,6 @@ task("generatorNingenmeMysql") {
             )
         }
     }
+    dependsOn("dockerComposeUp")
+    finalizedBy("dockerComposeDown")
 }
