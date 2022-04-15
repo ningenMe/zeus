@@ -1,31 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <timeZone>Asia/Tokyo</timeZone>
-            <timestampPattern>YYYY-MM-dd HH:mm:ss.SSS</timestampPattern>
-            <fieldNames>
-                <timestamp>timestamp</timestamp>
-                <version>[ignore]</version>
-                <logger>class</logger>
-                <thread>thread</thread>
-                <level>level</level>
-                <levelValue>[ignore]</levelValue>
-            </fieldNames>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <!--    <appender name="STDOUT_JSON" class="ch.qos.logback.core.ConsoleAppender">-->
+    <!--        <encoder class="net.logstash.logback.encoder.LogstashEncoder">-->
+    <!--            <timeZone>Asia/Tokyo</timeZone>-->
+    <!--            <timestampPattern>YYYY-MM-dd HH:mm:ss.SSS</timestampPattern>-->
+    <!--            <fieldNames>-->
+    <!--                <timestamp>timestamp</timestamp>-->
+    <!--                <version>[ignore]</version>-->
+    <!--                <logger>class</logger>-->
+    <!--                <thread>thread</thread>-->
+    <!--                <level>level</level>-->
+    <!--                <levelValue>[ignore]</levelValue>-->
+    <!--            </fieldNames>-->
+    <!--        </encoder>-->
+    <!--    </appender>-->
+
+    <appender name="STDOUT_LINE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{YYYY-MM-dd HH:mm:ss.SSS} %highlight(%5p) [trace:%X{traceId:-} span:%X{spanId:-}] [%t] %cyan(%lo) %green(%msg) %n
+            </pattern>
         </encoder>
     </appender>
 
     <logger name="chapters.configuration">
-        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STDOUT_LINE"/>
     </logger>
 
     <springProfile name="test">
-        <root level="info">
-            <appender-ref ref="STDOUT"/>
+        <root level="DEBUG">
+            <appender-ref ref="STDOUT_LINE"/>
         </root>
     </springProfile>
     <springProfile name="prod">
-        <root level="info">
-            <appender-ref ref="STDOUT"/>
+        <root level="INFO">
+            <appender-ref ref="STDOUT_LINE"/>
         </root>
     </springProfile>
 </configuration>
