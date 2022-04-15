@@ -31,6 +31,7 @@ allprojects {
         implementation("io.github.microutils:kotlin-logging-jvm:2.1.21")
         implementation("ch.qos.logback:logback-classic:1.2.11")
         implementation("net.logstash.logback:logstash-logback-encoder:7.0.1")
+        implementation("org.springframework.cloud:spring-cloud-starter-sleuth:3.1.1")
         compileOnly("org.projectlombok:lombok:1.18.22")
         annotationProcessor("org.projectlombok:lombok:1.18.22")
         testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.5")
