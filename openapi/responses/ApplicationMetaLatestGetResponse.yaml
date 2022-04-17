@@ -1,0 +1,10 @@
+title: ApplicationMetaLatestGetResponse
+type: object
+properties:
+  applicationMetaId:
+    type: string
+  updatedTime:
+    type: string
+required:
+  - applicationMetaId
+  - updatedTime

@@ -2,7 +2,7 @@ get:
   tags:
     - health
   parameters: [ ]
-  operationId: health-get
+  operationId: healthGet
   responses:
     '200':
       description: ok

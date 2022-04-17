@@ -4,7 +4,7 @@
 package ningenme.net.zeus.infrastructure.generated.comicmemysql.mapper
 
 import java.sql.JDBCType
-import java.util.Date
+import java.time.LocalDateTime
 import org.mybatis.dynamic.sql.AliasableSqlTable
 import org.mybatis.dynamic.sql.util.kotlin.elements.column
 
@@ -28,12 +28,12 @@ object ComicPageComicmeMysqlBaseDtoDynamicSqlSupport {
 
         val name = column<String>(name = "name", jdbcType = JDBCType.VARCHAR)
 
-        val processedTime = column<Date>(name = "processed_time", jdbcType = JDBCType.TIMESTAMP)
+        val processedTime = column<LocalDateTime>(name = "processed_time", jdbcType = JDBCType.TIMESTAMP)
 
-        val createdTime = column<Date>(name = "created_time", jdbcType = JDBCType.TIMESTAMP)
+        val createdTime = column<LocalDateTime>(name = "created_time", jdbcType = JDBCType.TIMESTAMP)
 
-        val updatedTime = column<Date>(name = "updated_time", jdbcType = JDBCType.TIMESTAMP)
+        val updatedTime = column<LocalDateTime>(name = "updated_time", jdbcType = JDBCType.TIMESTAMP)
 
-        val deletedTime = column<Date>(name = "deleted_time", jdbcType = JDBCType.TIMESTAMP)
+        val deletedTime = column<LocalDateTime>(name = "deleted_time", jdbcType = JDBCType.TIMESTAMP)
     }
 }

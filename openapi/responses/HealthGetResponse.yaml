@@ -7,3 +7,7 @@ properties:
     type: boolean
   isComproMysqlConnected:
     type: boolean
+required:
+  - isNingenmeMysqlConnected
+  - isComicmeMysqlConnected
+  - isComproMysqlConnected
