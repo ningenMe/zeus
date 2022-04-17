@@ -14,14 +14,14 @@ CREATE TABLE `application_meta`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-CREATE TABLE `net_user`
+CREATE TABLE `ningenme_net_user`
 (
-    `net_user_id`  varchar(255) NOT NULL,
-    `password`     varchar(255) NOT NULL,
-    `deleted_time` timestamp    NULL     DEFAULT NULL,
-    `created_time` timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_time` timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`net_user_id`)
+    `ningenme_net_user_id` varchar(255) NOT NULL,
+    `password`             varchar(255) NOT NULL,
+    `deleted_time`         timestamp    NULL     DEFAULT NULL,
+    `created_time`         timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_time`         timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`ningenme_net_user_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
