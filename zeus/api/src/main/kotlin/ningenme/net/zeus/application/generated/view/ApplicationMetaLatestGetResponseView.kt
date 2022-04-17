@@ -13,17 +13,14 @@ import javax.validation.Valid
 
 /**
  * 
- * @param isNingenmeMysqlConnected 
- * @param isComicmeMysqlConnected 
- * @param isComproMysqlConnected 
+ * @param applicationMetaId 
+ * @param updatedTime 
  */
-data class HealthGetResponseView(
+data class ApplicationMetaLatestGetResponseView(
 
-    @field:JsonProperty("isNingenmeMysqlConnected", required = true) val isNingenmeMysqlConnected: kotlin.Boolean,
+    @field:JsonProperty("applicationMetaId", required = true) val applicationMetaId: kotlin.String,
 
-    @field:JsonProperty("isComicmeMysqlConnected", required = true) val isComicmeMysqlConnected: kotlin.Boolean,
-
-    @field:JsonProperty("isComproMysqlConnected", required = true) val isComproMysqlConnected: kotlin.Boolean
+    @field:JsonProperty("updatedTime", required = true) val updatedTime: kotlin.String
 ) {
 
 }

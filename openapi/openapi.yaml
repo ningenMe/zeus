@@ -8,3 +8,5 @@ servers:
 paths:
   /v1/health:
     $ref: './paths/Health.yaml'
+  /v1/application-metas/{applicationMetaId}/latest:
+    $ref: './paths/ApplicationMetaLatest.yaml'
