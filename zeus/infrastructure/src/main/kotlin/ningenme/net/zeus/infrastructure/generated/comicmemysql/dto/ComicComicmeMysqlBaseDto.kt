@@ -3,7 +3,8 @@
  */
 package ningenme.net.zeus.infrastructure.generated.comicmemysql.dto
 
-import java.util.Date
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 data class ComicComicmeMysqlBaseDto(
     var comicId: Int? = null,
@@ -11,8 +12,8 @@ data class ComicComicmeMysqlBaseDto(
     var url: String? = null,
     var workId: Int? = null,
     var comicName: String? = null,
-    var publishedDate: Date? = null,
-    var createdTime: Date? = null,
-    var updatedTime: Date? = null,
-    var deletedTime: Date? = null
+    var publishedDate: LocalDate? = null,
+    var createdTime: LocalDateTime? = null,
+    var updatedTime: LocalDateTime? = null,
+    var deletedTime: LocalDateTime? = null
 )

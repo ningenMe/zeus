@@ -3,7 +3,7 @@
  */
 package ningenme.net.zeus.infrastructure.generated.compromysql.dto
 
-import java.util.Date
+import java.time.LocalDateTime
 
 data class AtcoderUserHistoryComproMysqlBaseDto(
     var atcoderId: String? = null,
@@ -13,7 +13,7 @@ data class AtcoderUserHistoryComproMysqlBaseDto(
     var oldRating: Int? = null,
     var newRating: Int? = null,
     var performance: Int? = null,
-    var deletedTime: Date? = null,
-    var createdTime: Date? = null,
-    var updatedTime: Date? = null
+    var deletedTime: LocalDateTime? = null,
+    var createdTime: LocalDateTime? = null,
+    var updatedTime: LocalDateTime? = null
 )

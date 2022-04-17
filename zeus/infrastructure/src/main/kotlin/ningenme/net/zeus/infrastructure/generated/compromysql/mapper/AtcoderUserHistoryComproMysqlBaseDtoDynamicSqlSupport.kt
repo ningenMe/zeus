@@ -4,7 +4,7 @@
 package ningenme.net.zeus.infrastructure.generated.compromysql.mapper
 
 import java.sql.JDBCType
-import java.util.Date
+import java.time.LocalDateTime
 import org.mybatis.dynamic.sql.AliasableSqlTable
 import org.mybatis.dynamic.sql.util.kotlin.elements.column
 
@@ -46,10 +46,10 @@ object AtcoderUserHistoryComproMysqlBaseDtoDynamicSqlSupport {
 
         val performance = column<Int>(name = "performance", jdbcType = JDBCType.INTEGER)
 
-        val deletedTime = column<Date>(name = "deleted_time", jdbcType = JDBCType.TIMESTAMP)
+        val deletedTime = column<LocalDateTime>(name = "deleted_time", jdbcType = JDBCType.TIMESTAMP)
 
-        val createdTime = column<Date>(name = "created_time", jdbcType = JDBCType.TIMESTAMP)
+        val createdTime = column<LocalDateTime>(name = "created_time", jdbcType = JDBCType.TIMESTAMP)
 
-        val updatedTime = column<Date>(name = "updated_time", jdbcType = JDBCType.TIMESTAMP)
+        val updatedTime = column<LocalDateTime>(name = "updated_time", jdbcType = JDBCType.TIMESTAMP)
     }
 }

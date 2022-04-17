@@ -5,5 +5,8 @@ import java.time.LocalDateTime
 
 data class ApplicationMeta(
     private val applicationMetaId: ApplicationMetaId,
-    private val localDateTime: LocalDateTime
-)
+    private val createdTime: LocalDateTime
+) {
+    constructor(applicationMetaIdString: String?, createdTime: LocalDateTime?)
+        : this(ApplicationMetaId.of(applicationMetaIdString!!), createdTime!!);
+}

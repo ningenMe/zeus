@@ -10,7 +10,7 @@ class ApplicationMetaService(
     private val applicationMetaNingenmeMysqlRepository: ApplicationMetaNingenmeMysqlRepository
 ) {
     fun getList(applicationMetaId: ApplicationMetaId): ApplicationMetaList {
-        return ApplicationMetaList(applicationMetaNingenmeMysqlRepository.get())
+        return ApplicationMetaList(applicationMetaNingenmeMysqlRepository.get(applicationMetaId))
     }
 
 }
