@@ -8,7 +8,7 @@ import ningenme.net.zeus.infrastructure.repository.ningenmemysql.mapper.Applicat
 import org.springframework.stereotype.Repository
 
 @Repository
-class ApplicationMetaNingenmeMysqlRepositoryImpl(
+open class ApplicationMetaNingenmeMysqlRepositoryImpl(
     private val applicationMetaNingenmeMysqlMapper: ApplicationMetaNingenmeMysqlMapper
 ) : ApplicationMetaNingenmeMysqlRepository {
 
