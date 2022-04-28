@@ -2,6 +2,15 @@
 
 趣味開発のバックエンド全般
 
+## local
+
+batch
+
+```shell
+gradle :zeus:batch:build
+
+```
+
 ## domain
 
 [zeus-api.ningenme.net](https://zeus-api.ningenme.net)

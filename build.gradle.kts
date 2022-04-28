@@ -15,6 +15,7 @@ configurations {
 
 allprojects {
     apply(plugin = "kotlin")
+    apply(plugin = "org.springframework.boot")
 
     group = "ningenme.net"
     version = "0.0.1-SNAPSHOT"
@@ -24,7 +25,7 @@ allprojects {
         mavenCentral()
     }
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-web:2.6.5")
+        implementation("org.springframework.boot:spring-boot-starter-web:2.6.6")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.2")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -34,7 +35,7 @@ allprojects {
         implementation("org.springframework.cloud:spring-cloud-starter-sleuth:3.1.1")
         compileOnly("org.projectlombok:lombok:1.18.22")
         annotationProcessor("org.projectlombok:lombok:1.18.22")
-        testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.5")
+        testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.6")
     }
 
     tasks.withType<KotlinCompile> {
