@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    batch-mysql:
+      url: ${NINGENME_MYSQL_URL}/batch?enabledTLSProtocols=TLSv1.2
+      username: ${NINGENME_MYSQL_MASTER_USER_USERNAME}
+      password: ${NINGENME_MYSQL_MASTER_USER_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver

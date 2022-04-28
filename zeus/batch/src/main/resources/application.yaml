@@ -1,1 +1,9 @@
-
+spring:
+  profiles:
+    group:
+      test:
+        - test-batch
+        - test-infrastructure
+      prod:
+        - prod-batch
+        - prod-infrastructure

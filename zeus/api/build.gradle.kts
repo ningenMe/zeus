@@ -1,3 +1,6 @@
+base.archivesName.set("zeus-api")
+version = ""
+
 plugins {
     id("org.openapi.generator") version "5.3.1"
 }
