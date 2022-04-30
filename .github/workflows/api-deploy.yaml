@@ -1,0 +1,64 @@
+name: api-deploy
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  constant:
+    runs-on: ubuntu-latest
+    outputs:
+      java-version: ${{ steps.constant.outputs.java-version }}
+      java-distribution: ${{ steps.constant.outputs.java-distribution }}
+      gradle-version: ${{ steps.constant.outputs.gradle-version }}
+      aws-region: ${{ steps.constant.outputs.aws-region }}
+    steps:
+      - id: checkout
+        name: checkout
+        uses: actions/checkout@v3.0.0
+      - id: constant
+        name: constant
+        uses: ./.github/workflows/composite/constant
+
+  gradle-check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - project-name: ":zeus:api"
+          - project-name: ":zeus:domain"
+          - project-name: ":zeus:infrastructure"
+    name: gradle-check${{ matrix.project-name }}
+    needs: [ constant ]
+    steps:
+      - id: checkout
+        name: checkout
+        uses: actions/checkout@v3.0.0
+      - id: gradle-check
+        name: gradle check
+        uses: ./.github/workflows/composite/gradle-check
+        with:
+          java-version: ${{ needs.constant.outputs.java-version }}
+          java-distribution: ${{ needs.constant.outputs.java-distribution }}
+          gradle-version: ${{ needs.constant.outputs.gradle-version }}
+          project-name: ${{ matrix.project-name }}
+
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    needs: [ constant, gradle-check ]
+    steps:
+      - id: checkout
+        name: checkout
+        uses: actions/checkout@v3.0.0
+      - id: gradle-check
+        name: gradle check
+        uses: ./.github/workflows/composite/build-and-push-image
+        with:
+          java-version: ${{ needs.constant.outputs.java-version }}
+          java-distribution: ${{ needs.constant.outputs.java-distribution }}
+          gradle-version: ${{ needs.constant.outputs.gradle-version }}
+          project-name: ":zeus:api"

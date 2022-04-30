@@ -1,5 +1,5 @@
-name: gradle-check
-description: gradle-check
+name: build-and-push-image
+description: build-and-push-image
 inputs:
   java-version:
     required: true
@@ -21,5 +21,5 @@ runs:
     - name: gradle-build
       uses: gradle/gradle-build-action@v2.1.5
       with:
-        arguments: ${{inputs.project-name}}:clean ${{inputs.project-name}}:check
+        arguments: ${{inputs.project-name}}:clean ${{inputs.project-name}}:build -x test
         gradle-version: ${{ inputs.gradle-version }}
