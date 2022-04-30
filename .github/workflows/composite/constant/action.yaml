@@ -1,5 +1,5 @@
-name: "constant"
-description: 'constant'
+name: constant
+description: constant
 outputs:
   java-version:
     value: ${{ steps.constant.outputs.java-version }}
@@ -15,4 +15,5 @@ runs:
         echo "::set-output name=java-version::17"
         echo "::set-output name=java-distribution::temurin"
         echo "::set-output name=gradle-version::7.4.2"
+        echo "::set-output name=aws-region::ap-northeast-1"
       shell: bash
