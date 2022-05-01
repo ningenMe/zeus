@@ -4,20 +4,11 @@ import ningenme.net.zeus.domain.value.ApplicationMetaId
 import java.time.LocalDateTime
 
 data class ApplicationMetaList(
-    private val applicationMetaList: List<ApplicationMeta>
+    val applicationMetaId: ApplicationMetaId,
+    val updatedTime: LocalDateTime
 ) {
-    init {
-        require(applicationMetaList.isNotEmpty())
-        val applicationMetaIdList = applicationMetaList.map { it.applicationMetaId }
-        val applicationMetaId = applicationMetaIdList.first()
-        check(applicationMetaIdList.all { it == applicationMetaId })
-    }
-
-    fun getApplicationMetaId(): ApplicationMetaId {
-        return applicationMetaList.map { it.applicationMetaId }.first()
-    }
-
-    fun getUpdatedTime(): LocalDateTime {
-        return applicationMetaList.maxByOrNull { it.createdTime }!!.createdTime
-    }
+    constructor(applicationMetaList: List<ApplicationMeta>) : this(
+        applicationMetaList.map { it.applicationMetaId }.first(),
+        applicationMetaList.maxByOrNull { it.createdTime }!!.createdTime
+    )
 }

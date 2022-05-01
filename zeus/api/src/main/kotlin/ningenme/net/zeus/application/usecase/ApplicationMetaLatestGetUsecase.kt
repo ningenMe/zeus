@@ -13,8 +13,8 @@ class ApplicationMetaLatestGetUsecase(
     fun getView(applicationMetaId: String): ApplicationMetaLatestGetResponseView {
         val applicationMetaList = applicationMetaService.getList(ApplicationMetaId.of(applicationMetaId));
         return ApplicationMetaLatestGetResponseView(
-            applicationMetaList.getApplicationMetaId().value,
-            applicationMetaList.getUpdatedTime().toString()
+            applicationMetaList.applicationMetaId.value,
+            applicationMetaList.updatedTime.toString()
         )
     }
 }
