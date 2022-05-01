@@ -17,7 +17,7 @@ open class ApplicationMetaNingenmeMysqlRepositoryImpl(
     override fun get(applicationMetaId: ApplicationMetaId): List<ApplicationMeta> {
         return applicationMetaNingenmeMysqlMapper
             .selectByApplicationMetaId(applicationMetaId.value)
-            .map {
+            .mapNotNull {
                 try {
                     ApplicationMeta(
                         it.applicationMetaId,
@@ -28,7 +28,6 @@ open class ApplicationMetaNingenmeMysqlRepositoryImpl(
                     null
                 }
             }
-            .mapNotNull { it }
     }
 
 }
