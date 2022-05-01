@@ -1,5 +1,6 @@
 package ningenme.net.zeus.domain.service
 
+import mu.KotlinLogging
 import ningenme.net.zeus.domain.repository.comicmemysql.HealthComicmeMysqlRepository
 import ningenme.net.zeus.domain.repository.compromysql.HealthComproMysqlRepository
 import ningenme.net.zeus.domain.repository.ningenmemysql.HealthNingenmeMysqlRepository
@@ -11,11 +12,14 @@ class HealthService(
     private val healthComicmeMysqlRepository: HealthComicmeMysqlRepository,
     private val healthComproMysqlRepository: HealthComproMysqlRepository
 ) {
+    private val logger = KotlinLogging.logger {}
+
     fun isNingenmeMysqlConnected(): Boolean {
         return try {
             healthNingenmeMysqlRepository.get()
             true
         } catch (ex: Exception) {
+            logger.warn(ex.message)
             false
         }
     }
@@ -25,6 +29,7 @@ class HealthService(
             healthComicmeMysqlRepository.get()
             true
         } catch (ex: Exception) {
+            logger.warn(ex.message)
             false
         }
     }
@@ -34,6 +39,7 @@ class HealthService(
             healthComproMysqlRepository.get()
             true
         } catch (ex: Exception) {
+            logger.warn(ex.message)
             false
         }
     }
