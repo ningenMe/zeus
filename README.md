@@ -28,7 +28,7 @@
 
 |version  |repository                                                       |tech stack|  
 |------   |---------                                                        |----------- |  
-|v4 (this)|[zeus](https://github.com/ningenMe/zeus)                         |spring + ecs|
-|v3       |[net-api](https://github.com/ningenMe/net-api)                   |spring + ecs|  
-|v2       |[ningenme-net-api](https://github.com/ningenMe/ningenme-net-api) |spring + ec2|  
-|v1       |[ningenMe.net.API](https://github.com/ningenMe/ningenMe.net.API) |laravel + ec2|  
+|v4 (this)|[zeus](https://github.com/ningenMe/zeus)                         |kotlin + spring + ecs|
+|v3       |[net-api](https://github.com/ningenMe/net-api)                   |java + spring + ecs|  
+|v2       |[ningenme-net-api](https://github.com/ningenMe/ningenme-net-api) |java + spring + ec2|  
+|v1       |[ningenMe.net.API](https://github.com/ningenMe/ningenMe.net.API) |php + laravel + ec2|  

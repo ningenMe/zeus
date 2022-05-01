@@ -4,7 +4,7 @@
 package ningenme.net.zeus.infrastructure.generated.compromysql.mapper
 
 import java.sql.JDBCType
-import java.util.Date
+import java.time.LocalDateTime
 import org.mybatis.dynamic.sql.AliasableSqlTable
 import org.mybatis.dynamic.sql.util.kotlin.elements.column
 
@@ -66,14 +66,14 @@ object AtcoderUserComproMysqlBaseDtoDynamicSqlSupport {
 
         val highestPerformance = column<Int>(name = "highest_performance", jdbcType = JDBCType.INTEGER)
 
-        val firstParticipateTime = column<Date>(name = "first_participate_time", jdbcType = JDBCType.TIMESTAMP)
+        val firstParticipateTime = column<LocalDateTime>(name = "first_participate_time", jdbcType = JDBCType.TIMESTAMP)
 
-        val lastParticipateTime = column<Date>(name = "last_participate_time", jdbcType = JDBCType.TIMESTAMP)
+        val lastParticipateTime = column<LocalDateTime>(name = "last_participate_time", jdbcType = JDBCType.TIMESTAMP)
 
-        val deletedTime = column<Date>(name = "deleted_time", jdbcType = JDBCType.TIMESTAMP)
+        val deletedTime = column<LocalDateTime>(name = "deleted_time", jdbcType = JDBCType.TIMESTAMP)
 
-        val createdTime = column<Date>(name = "created_time", jdbcType = JDBCType.TIMESTAMP)
+        val createdTime = column<LocalDateTime>(name = "created_time", jdbcType = JDBCType.TIMESTAMP)
 
-        val updatedTime = column<Date>(name = "updated_time", jdbcType = JDBCType.TIMESTAMP)
+        val updatedTime = column<LocalDateTime>(name = "updated_time", jdbcType = JDBCType.TIMESTAMP)
     }
 }

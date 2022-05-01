@@ -13,6 +13,9 @@
                         password="password">
             <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
+        <javaTypeResolver>
+            <property name="useJSR310Types" value="true"/>
+        </javaTypeResolver>
         <javaModelGenerator
             targetProject="src/main/kotlin"
             targetPackage="ningenme.net.zeus.infrastructure.generated.compromysql.dto"
