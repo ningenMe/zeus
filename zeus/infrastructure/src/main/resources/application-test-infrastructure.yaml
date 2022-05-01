@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    ningenme-mysql:
+      url: jdbc:mysql://localhost:3306/ningenme
+      username: root
+      password: password
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    comicme-mysql:
+      url: jdbc:mysql://localhost:13306/comicme
+      username: root
+      password: password
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    compro-mysql:
+      url: jdbc:mysql://localhost:23306/compro
+      username: root
+      password: password
+      driver-class-name: com.mysql.cj.jdbc.Driver

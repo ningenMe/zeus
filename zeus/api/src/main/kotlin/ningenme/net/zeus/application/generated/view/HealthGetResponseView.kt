@@ -13,17 +13,17 @@ import javax.validation.Valid
 
 /**
  * 
- * @param ningenmeMysql 
- * @param comicmeMysql 
- * @param comproMysql 
+ * @param isNingenmeMysqlConnected 
+ * @param isComicmeMysqlConnected 
+ * @param isComproMysqlConnected 
  */
 data class HealthGetResponseView(
 
-    @field:JsonProperty("ningenmeMysql") val ningenmeMysql: kotlin.Boolean? = null,
+    @field:JsonProperty("isNingenmeMysqlConnected") val isNingenmeMysqlConnected: kotlin.Boolean? = null,
 
-    @field:JsonProperty("comicmeMysql") val comicmeMysql: kotlin.Boolean? = null,
+    @field:JsonProperty("isComicmeMysqlConnected") val isComicmeMysqlConnected: kotlin.Boolean? = null,
 
-    @field:JsonProperty("comproMysql") val comproMysql: kotlin.Boolean? = null
+    @field:JsonProperty("isComproMysqlConnected") val isComproMysqlConnected: kotlin.Boolean? = null
 ) {
 
 }
