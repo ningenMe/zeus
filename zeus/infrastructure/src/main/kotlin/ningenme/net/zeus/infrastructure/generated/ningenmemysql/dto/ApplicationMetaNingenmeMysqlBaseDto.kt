@@ -3,10 +3,10 @@
  */
 package ningenme.net.zeus.infrastructure.generated.ningenmemysql.dto
 
-import java.util.Date
+import java.time.LocalDateTime
 
 data class ApplicationMetaNingenmeMysqlBaseDto(
     var applicationMetaId: String? = null,
-    var createdTime: Date? = null,
-    var deletedTime: Date? = null
+    var createdTime: LocalDateTime? = null,
+    var deletedTime: LocalDateTime? = null
 )

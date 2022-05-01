@@ -3,7 +3,7 @@
  */
 package ningenme.net.zeus.infrastructure.generated.ningenmemysql.mapper
 
-import java.util.Date
+import java.time.LocalDateTime
 import ningenme.net.zeus.infrastructure.generated.ningenmemysql.dto.ApplicationMetaNingenmeMysqlBaseDto
 import ningenme.net.zeus.infrastructure.generated.ningenmemysql.mapper.ApplicationMetaNingenmeMysqlBaseDtoDynamicSqlSupport.applicationMetaId
 import ningenme.net.zeus.infrastructure.generated.ningenmemysql.mapper.ApplicationMetaNingenmeMysqlBaseDtoDynamicSqlSupport.applicationMetaNingenmeMysqlBaseDto
@@ -56,7 +56,7 @@ fun ApplicationMetaNingenmeMysqlBaseDtoMapper.count(completer: CountCompleter) =
 fun ApplicationMetaNingenmeMysqlBaseDtoMapper.delete(completer: DeleteCompleter) =
     deleteFrom(this::delete, applicationMetaNingenmeMysqlBaseDto, completer)
 
-fun ApplicationMetaNingenmeMysqlBaseDtoMapper.deleteByPrimaryKey(applicationMetaId_: String, createdTime_: Date) =
+fun ApplicationMetaNingenmeMysqlBaseDtoMapper.deleteByPrimaryKey(applicationMetaId_: String, createdTime_: LocalDateTime) =
     delete {
         where { applicationMetaId isEqualTo applicationMetaId_ }
         and { createdTime isEqualTo createdTime_ }
@@ -97,7 +97,7 @@ fun ApplicationMetaNingenmeMysqlBaseDtoMapper.select(completer: SelectCompleter)
 fun ApplicationMetaNingenmeMysqlBaseDtoMapper.selectDistinct(completer: SelectCompleter) =
     selectDistinct(this::selectMany, columnList, applicationMetaNingenmeMysqlBaseDto, completer)
 
-fun ApplicationMetaNingenmeMysqlBaseDtoMapper.selectByPrimaryKey(applicationMetaId_: String, createdTime_: Date) =
+fun ApplicationMetaNingenmeMysqlBaseDtoMapper.selectByPrimaryKey(applicationMetaId_: String, createdTime_: LocalDateTime) =
     selectOne {
         where { applicationMetaId isEqualTo applicationMetaId_ }
         and { createdTime isEqualTo createdTime_ }
