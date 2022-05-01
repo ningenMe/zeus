@@ -1,0 +1,8 @@
+type: object
+properties:
+  ningenmeMysql:
+    type: boolean
+  comicmeMysql:
+    type: boolean
+  comproMysql:
+    type: boolean

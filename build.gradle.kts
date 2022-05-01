@@ -45,4 +45,5 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    jvmArgs = mutableListOf("-Dspring.profiles.active=test")
 }
