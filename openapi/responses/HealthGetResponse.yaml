@@ -1,8 +1,9 @@
+title: HealthGetResponse
 type: object
 properties:
-  ningenmeMysql:
+  isNingenmeMysqlConnected:
     type: boolean
-  comicmeMysql:
+  isComicmeMysqlConnected:
     type: boolean
-  comproMysql:
+  isComproMysqlConnected:
     type: boolean
