@@ -90,7 +90,7 @@ jobs:
             has-diff: ${{ needs.git-diff.outputs.domain > 0 }}
           - project-name: "infrastructure"
             has-diff: ${{ needs.git-diff.outputs.infrastructure > 0 }}
-    name: gradle-check${{ matrix.project-name }}
+    name: gradle-check-${{ matrix.project-name }}
     needs: [ constant, git-diff, github ]
     steps:
       - id: checkout
