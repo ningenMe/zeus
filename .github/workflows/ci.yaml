@@ -1,0 +1,65 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  constant:
+    runs-on: ubuntu-latest
+    outputs:
+      java-version: ${{ steps.constant.outputs.java-version }}
+      java-distribution: ${{ steps.constant.outputs.java-distribution }}
+      gradle-version: ${{ steps.constant.outputs.gradle-version }}
+    steps:
+      - id: checkout
+        name: checkout
+        uses: actions/checkout@v3.0.0
+      - id: constant
+        name: constant
+        uses: ./.github/composite/constant
+
+  github:
+    runs-on: ubuntu-latest
+    needs: [ constant ]
+    steps:
+      - id: checkout
+        name: checkout
+        uses: actions/checkout@v3.0.0
+      - id: assignees
+        name: assignees
+        uses: actions/github-script@v4.1.0
+        if: github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              assignees: `${{ github.actor }}`
+            });
+
+  gradle-check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project-name:
+          - ":zeus:api"
+          - ":zeus:batch"
+          - ":zeus:domain"
+          - ":zeus:infrastructure"
+    name: gradle-check-${{ matrix.project-name }}
+    needs: [ constant, github ]
+    steps:
+      - id: checkout
+        name: checkout
+        uses: actions/checkout@v3.0.0
+      - id: gradle-check
+        name: gradle check
+        uses: ./.github/composite/gradle-check
+        with:
+          java-version: ${{ needs.constant.outputs.java-version }}
+          java-distribution: ${{ needs.constant.outputs.java-distribution }}
+          gradle-version: ${{ needs.constant.outputs.gradle-version }}
+          project-name: ${{ matrix.project-name }}
