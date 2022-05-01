@@ -9,6 +9,8 @@ inputs:
     required: true
   project-name:
     required: true
+  aws-region:
+    required: true
 runs:
   using: composite
   steps:
@@ -18,8 +20,16 @@ runs:
       with:
         java-version: ${{ inputs.java-version }}
         distribution: ${{ inputs.java-distribution }}
-    - name: gradle-build
+    - id: gradle-build
+      name: gradle build
       uses: gradle/gradle-build-action@v2.1.5
       with:
         arguments: ${{inputs.project-name}}:clean ${{inputs.project-name}}:build -x test
         gradle-version: ${{ inputs.gradle-version }}
+    - id: configure-aws-credentials
+      name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v1.6.1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{inputs.aws-region}}

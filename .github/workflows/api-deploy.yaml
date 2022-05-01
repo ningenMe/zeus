@@ -62,3 +62,4 @@ jobs:
           java-distribution: ${{ needs.constant.outputs.java-distribution }}
           gradle-version: ${{ needs.constant.outputs.gradle-version }}
           project-name: ":zeus:api"
+          aws-region: ${{ needs.constant.outputs.aws-region }}
