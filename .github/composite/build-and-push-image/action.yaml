@@ -1,0 +1,25 @@
+name: build-and-push-image
+description: build-and-push-image
+inputs:
+  java-version:
+    required: true
+  java-distribution:
+    required: true
+  gradle-version:
+    required: true
+  project-name:
+    required: true
+runs:
+  using: composite
+  steps:
+    - id: setup-java
+      name: setup java
+      uses: actions/setup-java@v3.2.0
+      with:
+        java-version: ${{ inputs.java-version }}
+        distribution: ${{ inputs.java-distribution }}
+    - name: gradle-build
+      uses: gradle/gradle-build-action@v2.1.5
+      with:
+        arguments: ${{inputs.project-name}}:clean ${{inputs.project-name}}:build -x test
+        gradle-version: ${{ inputs.gradle-version }}
