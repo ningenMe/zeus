@@ -9,6 +9,10 @@ inputs:
     required: true
   project-name:
     required: true
+  aws-access-key-id:
+    required: true
+  aws-secret-access-key:
+    required: true
   aws-region:
     required: true
 runs:
@@ -30,6 +34,6 @@ runs:
       name: configure aws credentials
       uses: aws-actions/configure-aws-credentials@v1.6.1
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-access-key-id: ${{inputs.aws-access-key-id}}
+        aws-secret-access-key: ${{inputs.aws-secret-access-key}}
         aws-region: ${{inputs.aws-region}}
