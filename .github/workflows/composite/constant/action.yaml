@@ -8,7 +8,7 @@ outputs:
   gradle-version:
     value: ${{ steps.constant.outputs.gradle-version }}
 runs:
-  using: "composite"
+  using: composite
   steps:
     - id: constant
       run: |

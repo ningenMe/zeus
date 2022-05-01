@@ -10,7 +10,7 @@ inputs:
   project-name:
     required: true
 runs:
-  using: "composite"
+  using: composite
   steps:
     - id: setup-java
       name: setup java
