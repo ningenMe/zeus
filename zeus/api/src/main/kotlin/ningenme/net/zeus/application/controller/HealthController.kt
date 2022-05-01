@@ -1,14 +1,16 @@
 package ningenme.net.zeus.application.controller
 
+import ningenme.net.zeus.application.generated.controller.HealthApi
+import ningenme.net.zeus.application.generated.view.HealthGetResponseView
+import ningenme.net.zeus.application.usecase.HealthGetUsecase
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class HealthController {
+class HealthController(private val healthGetUsecase: HealthGetUsecase) : HealthApi {
 
-    @GetMapping("/v1/health")
-    fun healthGet(): ResponseEntity<String> {
-        return ResponseEntity.ok("ok")
+    @Override
+    override fun healthGet(): ResponseEntity<HealthGetResponseView> {
+        return ResponseEntity.ok(healthGetUsecase.getView());
     }
 }
