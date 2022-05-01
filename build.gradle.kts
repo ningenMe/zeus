@@ -50,7 +50,7 @@ allprojects {
         setCommandLine(
             "docker-compose",
             "-f",
-            "$rootDir/tool/docker-compose.yaml",
+            "$rootDir/zeus/infrastructure/tool/docker-compose.yaml",
             "up",
             "-d"
         )
@@ -63,7 +63,7 @@ allprojects {
         setCommandLine(
             "docker-compose",
             "-f",
-            "$rootDir/tool/docker-compose.yaml",
+            "$rootDir/zeus/infrastructure/tool/docker-compose.yaml",
             "down",
             "--remove-orphans",
             "--volumes"
