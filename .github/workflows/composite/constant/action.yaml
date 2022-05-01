@@ -7,6 +7,8 @@ outputs:
     value: ${{ steps.constant.outputs.java-distribution }}
   gradle-version:
     value: ${{ steps.constant.outputs.gradle-version }}
+  aws-region:
+    value: ${{ steps.constant.outputs.aws-region }}
 runs:
   using: composite
   steps:

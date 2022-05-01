@@ -82,13 +82,13 @@ jobs:
     strategy:
       matrix:
         include:
-          - project-name: ":zeus:api"
+          - project-name: "api"
             has-diff: ${{ needs.git-diff.outputs.api > 0 }}
-          - project-name: ":zeus:batch"
+          - project-name: "batch"
             has-diff: ${{ needs.git-diff.outputs.batch > 0 }}
-          - project-name: ":zeus:domain"
+          - project-name: "domain"
             has-diff: ${{ needs.git-diff.outputs.domain > 0 }}
-          - project-name: ":zeus:infrastructure"
+          - project-name: "infrastructure"
             has-diff: ${{ needs.git-diff.outputs.infrastructure > 0 }}
     name: gradle-check${{ matrix.project-name }}
     needs: [ constant, git-diff, github ]

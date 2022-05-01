@@ -13,6 +13,7 @@ jobs:
       java-distribution: ${{ steps.constant.outputs.java-distribution }}
       gradle-version: ${{ steps.constant.outputs.gradle-version }}
       aws-region: ${{ steps.constant.outputs.aws-region }}
+      aws-ecr-repository: zeus-api-repository
     steps:
       - id: checkout
         name: checkout
@@ -26,9 +27,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - project-name: ":zeus:api"
-          - project-name: ":zeus:domain"
-          - project-name: ":zeus:infrastructure"
+          - project-name: "api"
+          - project-name: "domain"
+          - project-name: "infrastructure"
     name: gradle-check${{ matrix.project-name }}
     needs: [ constant ]
     steps:
@@ -46,19 +47,21 @@ jobs:
 
   build-and-push-image:
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     needs: [ constant, gradle-check ]
     steps:
       - id: checkout
         name: checkout
         uses: actions/checkout@v3.0.0
-      - id: gradle-check
-        name: gradle check
+      - id: build-and-push-image
+        name: build and push image
         uses: ./.github/workflows/composite/build-and-push-image
         with:
           java-version: ${{ needs.constant.outputs.java-version }}
           java-distribution: ${{ needs.constant.outputs.java-distribution }}
           gradle-version: ${{ needs.constant.outputs.gradle-version }}
-          project-name: ":zeus:api"
+          project-name: "api"
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ needs.constant.outputs.aws-region }}
+          aws-ecr-registry: ${{ secrets.AWS_ECR_REGISTRY }}
+          aws-ecr-repository: ${{ needs.constant.outputs.aws-ecr-repository }}

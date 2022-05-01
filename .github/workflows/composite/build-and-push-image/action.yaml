@@ -9,6 +9,16 @@ inputs:
     required: true
   project-name:
     required: true
+  aws-access-key-id:
+    required: true
+  aws-secret-access-key:
+    required: true
+  aws-region:
+    required: true
+  aws-ecr-registry:
+    required: true
+  aws-ecr-repository:
+    required: true
 runs:
   using: composite
   steps:
@@ -18,8 +28,26 @@ runs:
       with:
         java-version: ${{ inputs.java-version }}
         distribution: ${{ inputs.java-distribution }}
-    - name: gradle-build
+    - id: gradle-build
+      name: gradle build
       uses: gradle/gradle-build-action@v2.1.5
       with:
-        arguments: ${{inputs.project-name}}:clean ${{inputs.project-name}}:build -x test
+        arguments: :zeus:${{inputs.project-name}}:clean :zeus:${{inputs.project-name}}:build -x test
         gradle-version: ${{ inputs.gradle-version }}
+    - id: image-build
+      name: image build
+      run: docker build -t ${{ inputs.aws-ecr-registry }}/${{ inputs.aws-ecr-repository }}:latest ./zeus/${{inputs.project-name}}
+      shell: bash
+    - id: configure-aws-credentials
+      name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v1.6.1
+      with:
+        aws-access-key-id: ${{inputs.aws-access-key-id}}
+        aws-secret-access-key: ${{inputs.aws-secret-access-key}}
+        aws-region: ${{inputs.aws-region}}
+    - id: push-image
+      name: push image
+      run: |
+        aws ecr get-login-password --region ${{inputs.aws-region}} | docker login --username AWS --password-stdin ${{ inputs.aws-ecr-registry }}
+        docker push ${{ inputs.aws-ecr-registry }}/${{ inputs.aws-ecr-repository }}:latest
+      shell: bash
