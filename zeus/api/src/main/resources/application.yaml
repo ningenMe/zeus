@@ -1,1 +1,9 @@
-
+spring:
+  profiles:
+    group:
+      test:
+        - test-api
+        - test-infrastructure
+      prod:
+        - prod-api
+        - prod-infrastructure

@@ -30,7 +30,7 @@ jobs:
           - project-name: "api"
           - project-name: "domain"
           - project-name: "infrastructure"
-    name: gradle-check${{ matrix.project-name }}
+    name: gradle-check-${{ matrix.project-name }}
     needs: [ constant ]
     steps:
       - id: checkout
