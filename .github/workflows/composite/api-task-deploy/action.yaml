@@ -1,0 +1,36 @@
+name: api-task-deploy
+description: api-task-deploy
+inputs:
+  aws-access-key-id:
+    required: true
+  aws-secret-access-key:
+    required: true
+  aws-region:
+    required: true
+runs:
+  using: composite
+  steps:
+    - id: configure-aws-credentials
+      name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v1.6.1
+      with:
+        aws-access-key-id: ${{inputs.aws-access-key-id}}
+        aws-secret-access-key: ${{inputs.aws-secret-access-key}}
+        aws-region: ${{inputs.aws-region}}
+    - id: download-task-definition
+      name: download task definition
+      run: |
+        aws ecs describe-task-definition --task-definition zeus-api --query taskDefinition > task-definition.json
+      shell: bash
+
+    - id: ecs-deploy-task-definition
+      name: ecs deploy task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1.4.9
+      with:
+        task-definition: task-definition.json
+        service: zeus-api-ecs-service
+        cluster: ningenme-cluster
+        wait-for-service-stability: true
+        codedeploy-appspec: ./zeus/api/appspec.yaml
+        codedeploy-application: zeus-api-codedeploy-app
+        codedeploy-deployment-group: zeus-api-deployment-group
