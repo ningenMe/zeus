@@ -15,3 +15,10 @@ spring:
       username: root
       password: password
       driver-class-name: com.mysql.cj.jdbc.Driver
+zeus-api:
+  sqs:
+    user:
+      access-key-id: ${SQS_USER_ACCESS_KEY_ID}
+      secret-access-key: ${SQS_USER_SECRET_ACCESS_KEY}
+    queue:
+      access-count-url: ${SQS_QUERE_ACCESS_COUNT_URL}
