@@ -92,13 +92,13 @@ jobs:
       matrix:
         include:
           - project-name: "api"
-            has-diff: ${{ needs.git-diff.outputs.api > 0 }}
+            has-diff: ${{ needs.git-diff.outputs.api > 0 || needs.git-diff.outputs.domain > 0 || needs.git-diff.outputs.infrastructure > 0 }}
           - project-name: "batch"
-            has-diff: ${{ needs.git-diff.outputs.batch > 0 }}
+            has-diff: ${{ needs.git-diff.outputs.batch > 0 || needs.git-diff.outputs.domain > 0 || needs.git-diff.outputs.infrastructure > 0 }}
           - project-name: "domain"
             has-diff: ${{ needs.git-diff.outputs.domain > 0 }}
           - project-name: "infrastructure"
-            has-diff: ${{ needs.git-diff.outputs.infrastructure > 0 }}
+            has-diff: ${{ needs.git-diff.outputs.infrastructure > 0 || needs.git-diff.outputs.domain > 0 }}
     name: gradle-check-${{ matrix.project-name }}
     needs: [ constant, git-diff, github ]
     steps:
