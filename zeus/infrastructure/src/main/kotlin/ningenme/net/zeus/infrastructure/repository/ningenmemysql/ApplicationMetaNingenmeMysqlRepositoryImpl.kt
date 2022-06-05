@@ -1,8 +1,8 @@
 package ningenme.net.zeus.infrastructure.repository.ningenmemysql
 
 import mu.KotlinLogging
-import ningenme.net.zeus.domain.entity.ApplicationMeta
 import ningenme.net.zeus.domain.repository.ningenmemysql.ApplicationMetaNingenmeMysqlRepository
+import ningenme.net.zeus.domain.value.ApplicationMeta
 import ningenme.net.zeus.domain.value.ApplicationMetaId
 import ningenme.net.zeus.infrastructure.repository.ningenmemysql.mapper.ApplicationMetaNingenmeMysqlMapper
 import org.springframework.stereotype.Repository

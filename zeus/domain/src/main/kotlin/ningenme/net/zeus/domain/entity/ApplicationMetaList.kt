@@ -1,5 +1,6 @@
 package ningenme.net.zeus.domain.entity
 
+import ningenme.net.zeus.domain.value.ApplicationMeta
 import ningenme.net.zeus.domain.value.ApplicationMetaId
 import java.time.LocalDateTime
 

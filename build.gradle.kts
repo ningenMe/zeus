@@ -24,19 +24,20 @@ allprojects {
 
     repositories {
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
     }
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-web:2.6.5")
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.2")
+        implementation("org.springframework.boot:spring-boot-starter-web:2.6.7")
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         implementation("io.github.microutils:kotlin-logging-jvm:2.1.21")
         implementation("ch.qos.logback:logback-classic:1.2.11")
-        implementation("net.logstash.logback:logstash-logback-encoder:7.0.1")
-        implementation("org.springframework.cloud:spring-cloud-starter-sleuth:3.1.1")
-        compileOnly("org.projectlombok:lombok:1.18.22")
-        annotationProcessor("org.projectlombok:lombok:1.18.22")
-        testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.5")
+        implementation("net.logstash.logback:logstash-logback-encoder:7.1.1")
+        implementation("org.springframework.cloud:spring-cloud-starter-sleuth:3.1.2")
+        compileOnly("org.projectlombok:lombok:1.18.24")
+        annotationProcessor("org.projectlombok:lombok:1.18.24")
+        testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.7")
     }
 
     tasks.withType<KotlinCompile> {
