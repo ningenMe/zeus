@@ -1,0 +1,11 @@
+post:
+  tags:
+    - accessCount
+  operationId: accessCountPost
+  responses:
+    '200':
+      description: ok
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/AccessCountPostResponse.yaml'

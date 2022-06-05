@@ -6,6 +6,6 @@ import java.time.LocalDateTime
 class AccessCount {
 
     val accessCountId: String = ULID.random()
-    val createdTime: LocalDateTime = LocalDateTime.now()
+    val accessTime: LocalDateTime = LocalDateTime.now()
 
 }

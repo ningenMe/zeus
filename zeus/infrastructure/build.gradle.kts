@@ -5,6 +5,7 @@ dependencies {
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
     implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.4.0")
     implementation("mysql:mysql-connector-java:8.0.28")
+    implementation("com.amazonaws:aws-java-sdk-sqs:1.12.233")
     mybatisGenerator("org.mybatis.generator:mybatis-generator-core:1.4.1")
     mybatisGenerator("mysql:mysql-connector-java:8.0.28")
 }
