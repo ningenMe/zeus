@@ -24,6 +24,7 @@ allprojects {
 
     repositories {
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
     }
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-web:2.6.7")
