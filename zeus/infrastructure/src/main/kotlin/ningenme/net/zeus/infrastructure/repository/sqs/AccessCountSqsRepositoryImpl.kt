@@ -12,11 +12,23 @@ open class AccessCountSqsRepositoryImpl(
 ) : AccessCountSqsRepository {
 
     override fun post(accessCount: AccessCount) {
-        sqsClient.sendAccessCount(
+        sqsClient.publishAccessCount(
             AccessCountSqsDto(
                 accessCount.accessCountId,
                 accessCount.accessTime.toString()
             )
         )
     }
+
+    override fun get(): List<AccessCount> {
+        return sqsClient.consumeAccessCountList()
+            .map {
+                AccessCount(
+                    accessCountId = it.accessCountId,
+                    accessTimeString = it.accessTime
+                )
+            }
+    }
+
+
 }

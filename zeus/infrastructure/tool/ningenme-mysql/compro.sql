@@ -1,3 +1,6 @@
+CREATE DATABASE `compro`;
+USE `compro`;
+
 CREATE TABLE `health`
 (
     `id` integer NOT NULL,

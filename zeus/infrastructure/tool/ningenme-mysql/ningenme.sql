@@ -1,3 +1,6 @@
+CREATE DATABASE `ningenme`;
+USE `ningenme`;
+
 CREATE TABLE `health`
 (
     `id` integer NOT NULL,
@@ -39,5 +42,18 @@ CREATE TABLE `blog`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
-CREATE USER 'master_user' IDENTIFIED BY 'password';
-GRANT SELECT, INSERT, UPDATE, DELETE ON *.* TO 'master_user';
+CREATE TABLE `access_count`
+(
+    `access_count_id` varchar(255) NOT NULL,
+    `access_time`     timestamp    NOT NULL,
+    `created_time`    timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_time`    timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`access_count_id`),
+    KEY `access_time` (`access_time`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+CREATE
+    USER 'master_user' IDENTIFIED BY 'password';
+GRANT
+    SELECT, INSERT , UPDATE, DELETE ON *.* TO 'master_user';

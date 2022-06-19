@@ -15,6 +15,11 @@ spring:
       username: ${NINGENME_MYSQL_MASTER_USER_USERNAME}
       password: ${NINGENME_MYSQL_MASTER_USER_PASSWORD}
       driver-class-name: com.mysql.cj.jdbc.Driver
+    batchmeta-mysql:
+      jdbcUrl: ${NINGENME_MYSQL_URL}/batchmeta?enabledTLSProtocols=TLSv1.2
+      username: ${NINGENME_MYSQL_MASTER_USER_USERNAME}
+      password: ${NINGENME_MYSQL_MASTER_USER_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
 zeus-api:
   sqs:
     user:
