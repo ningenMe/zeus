@@ -1,3 +1,6 @@
+CREATE DATABASE `comicme`;
+USE `comicme`;
+
 CREATE TABLE `health`
 (
     `id` integer NOT NULL,
