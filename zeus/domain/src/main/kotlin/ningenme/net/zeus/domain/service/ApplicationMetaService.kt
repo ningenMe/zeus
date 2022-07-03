@@ -2,6 +2,7 @@ package ningenme.net.zeus.domain.service
 
 import ningenme.net.zeus.domain.entity.ApplicationMetaList
 import ningenme.net.zeus.domain.repository.ningenmemysql.ApplicationMetaNingenmeMysqlRepository
+import ningenme.net.zeus.domain.value.ApplicationMeta
 import ningenme.net.zeus.domain.value.ApplicationMetaId
 import org.springframework.stereotype.Service
 
@@ -13,4 +14,7 @@ class ApplicationMetaService(
         return ApplicationMetaList(applicationMetaNingenmeMysqlRepository.get(applicationMetaId))
     }
 
+    fun post(applicationMeta: ApplicationMeta) {
+        applicationMetaNingenmeMysqlRepository.post(applicationMeta)
+    }
 }

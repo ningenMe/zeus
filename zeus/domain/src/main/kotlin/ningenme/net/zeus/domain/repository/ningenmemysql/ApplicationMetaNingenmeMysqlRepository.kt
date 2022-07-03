@@ -5,4 +5,5 @@ import ningenme.net.zeus.domain.value.ApplicationMetaId
 
 interface ApplicationMetaNingenmeMysqlRepository {
     fun get(applicationMetaId: ApplicationMetaId): List<ApplicationMeta>
+    fun post(applicationMeta: ApplicationMeta)
 }

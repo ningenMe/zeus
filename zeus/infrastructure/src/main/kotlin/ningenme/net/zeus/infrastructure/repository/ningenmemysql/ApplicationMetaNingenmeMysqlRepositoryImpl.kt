@@ -30,4 +30,7 @@ open class ApplicationMetaNingenmeMysqlRepositoryImpl(
             }
     }
 
+    override fun post(applicationMeta: ApplicationMeta) {
+        TODO("Not yet implemented")
+    }
 }
