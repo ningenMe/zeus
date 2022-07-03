@@ -10,6 +10,8 @@ paths:
     $ref: './paths/Health.yaml'
   /v1/application-metas/{applicationMetaId}/latest:
     $ref: './paths/ApplicationMetaLatest.yaml'
+  /v1/application-metas/{applicationMetaId}:
+    $ref: './paths/ApplicationMeta.yaml'
   /v1/access-counts:
     $ref: './paths/AccessCount.yaml'
 

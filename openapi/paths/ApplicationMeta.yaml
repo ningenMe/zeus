@@ -1,0 +1,17 @@
+post:
+  tags:
+    - applicationMeta
+  parameters:
+    - name: applicationMetaId
+      in: path
+      required: true
+      schema:
+        type: string
+  operationId: applicationMetaPost
+  responses:
+    '200':
+      description: ok
+      content:
+        application/json:
+          schema:
+            $ref: '../responses/ApplicationMetaPostResponse.yaml'

@@ -6,6 +6,7 @@
 package ningenme.net.zeus.application.generated.controller
 
 import ningenme.net.zeus.application.generated.view.ApplicationMetaLatestGetResponseView
+import ningenme.net.zeus.application.generated.view.ApplicationMetaPostResponseView
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -39,6 +40,17 @@ interface ApplicationMetaApi {
     )
     fun applicationMetaLatestGet( @PathVariable("applicationMetaId") applicationMetaId: kotlin.String
 ): ResponseEntity<ApplicationMetaLatestGetResponseView> {
+        return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
+    }
+
+
+    @RequestMapping(
+            method = [RequestMethod.POST],
+            value = ["/v1/application-metas/{applicationMetaId}"],
+            produces = ["application/json"]
+    )
+    fun applicationMetaPost( @PathVariable("applicationMetaId") applicationMetaId: kotlin.String
+): ResponseEntity<ApplicationMetaPostResponseView> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 }
