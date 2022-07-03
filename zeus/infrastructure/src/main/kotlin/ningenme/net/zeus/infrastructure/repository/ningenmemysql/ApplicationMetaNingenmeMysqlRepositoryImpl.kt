@@ -4,6 +4,8 @@ import mu.KotlinLogging
 import ningenme.net.zeus.domain.repository.ningenmemysql.ApplicationMetaNingenmeMysqlRepository
 import ningenme.net.zeus.domain.value.ApplicationMeta
 import ningenme.net.zeus.domain.value.ApplicationMetaId
+import ningenme.net.zeus.infrastructure.generated.ningenmemysql.dto.ApplicationMetaNingenmeMysqlBaseDto
+import ningenme.net.zeus.infrastructure.generated.ningenmemysql.mapper.insertSelective
 import ningenme.net.zeus.infrastructure.repository.ningenmemysql.mapper.ApplicationMetaNingenmeMysqlMapper
 import org.springframework.stereotype.Repository
 
@@ -31,6 +33,11 @@ open class ApplicationMetaNingenmeMysqlRepositoryImpl(
     }
 
     override fun post(applicationMeta: ApplicationMeta) {
-        TODO("Not yet implemented")
+        applicationMetaNingenmeMysqlMapper.insertSelective(
+            ApplicationMetaNingenmeMysqlBaseDto(
+                applicationMetaId = applicationMeta.applicationMetaId.value,
+                createdTime = applicationMeta.createdTime,
+            )
+        )
     }
 }
