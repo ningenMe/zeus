@@ -8,4 +8,7 @@ data class ApplicationMeta(
 ) {
     constructor(applicationMetaIdString: String?, createdTime: LocalDateTime?)
         : this(ApplicationMetaId.of(applicationMetaIdString!!), createdTime!!);
+
+    constructor(applicationMetaIdString: String)
+        : this(ApplicationMetaId.of(applicationMetaIdString), LocalDateTime.now());
 }
