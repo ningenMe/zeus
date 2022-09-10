@@ -32,16 +32,17 @@ runs:
     - id: appspec-s3-upload
       name: appspec s3 upload
       run: |
+        cd zeus/api
         zip -r zeus-api.zip codedeploy
         aws s3 cp zeus-api.zip s3://${{inputs.aws-s3-bucket}}/
       shell: bash
-#    - id: codedeploy
-#      name: codedeploy
-#      run: |
-#        aws deploy create-deployment \
-#          --application-name zeus-api-codedeploy-app \
-#          --deployment-group-name zeus-api-deployment-group \
-#          --s3-location bucket=s3://${{inputs.aws-s3-bucket}}/,key=zeus-api.zip,bundleType=zip \
-#          --deployment-config-name zeus-api-deployment-config \
-#          --region ${{inputs.aws-region}}
-#      shell: bash
+    - id: codedeploy
+      name: codedeploy
+      run: |
+        aws deploy create-deployment \
+          --application-name zeus-api-codedeploy-app \
+          --deployment-group-name zeus-api-deployment-group \
+          --s3-location bucket=s3://${{inputs.aws-s3-bucket}}/,key=zeus-api.zip,bundleType=zip \
+          --deployment-config-name zeus-api-deployment-config \
+          --region ${{inputs.aws-region}}
+      shell: bash
