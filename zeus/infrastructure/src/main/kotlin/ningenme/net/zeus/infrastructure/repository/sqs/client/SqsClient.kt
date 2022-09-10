@@ -4,6 +4,7 @@ import com.amazonaws.auth.AWSStaticCredentialsProvider
 import com.amazonaws.auth.BasicAWSCredentials
 import com.amazonaws.services.sqs.AmazonSQS
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder
+import com.amazonaws.services.sqs.model.ReceiveMessageRequest
 import com.fasterxml.jackson.databind.ObjectMapper
 import ningenme.net.zeus.common.config.SqsQueueConfig
 import ningenme.net.zeus.common.config.SqsUserConfig
@@ -27,11 +28,25 @@ class SqsClient(
         )
         .build()
 
-    fun sendAccessCount(accessCountSqsDto: AccessCountSqsDto) {
+    fun publishAccessCount(accessCountSqsDto: AccessCountSqsDto) {
         amazonSQS.sendMessage(
             sqsQueueConfig.accessCountUrl,
             objectMapper.writeValueAsString(accessCountSqsDto)
         )
+    }
+
+    fun consumeAccessCountList(): List<AccessCountSqsDto> {
+        val receiveMessageRequest = amazonSQS.receiveMessage(
+            ReceiveMessageRequest()
+                .withQueueUrl(sqsQueueConfig.accessCountUrl)
+                .withWaitTimeSeconds(10)
+                .withMaxNumberOfMessages(300)
+        )
+
+        return receiveMessageRequest.messages
+            .map {
+                objectMapper.readValue(it.body, AccessCountSqsDto::class.java)
+            }
     }
 
 }

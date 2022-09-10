@@ -6,15 +6,23 @@ spring:
       password: password
       driver-class-name: com.mysql.cj.jdbc.Driver
     comicme-mysql:
-      url: jdbc:mysql://localhost:13306/comicme
+      url: jdbc:mysql://localhost:3306/comicme
       username: root
       password: password
       driver-class-name: com.mysql.cj.jdbc.Driver
     compro-mysql:
-      url: jdbc:mysql://localhost:23306/compro
+      url: jdbc:mysql://localhost:3306/compro
       username: root
       password: password
       driver-class-name: com.mysql.cj.jdbc.Driver
+    batchmeta-mysql:
+      jdbcUrl: jdbc:mysql://localhost:3306/batchmeta
+      username: root
+      password: password
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  batch:
+    jdbc:
+      initialize-schema: never
 zeus-api:
   sqs:
     user:
